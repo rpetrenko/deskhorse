@@ -2,7 +2,7 @@ import pyautogui
 import os
 
 
-def convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=50):
+def convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=50, force=None):
     """
     If pdf is opened in chrome browser, define image region to take screenshot.
     The routine will:
@@ -13,7 +13,8 @@ def convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=50):
     :param screen_size: region on the screen to take screenshot
     :param out_dir: directory where resulting screenshots are saved
     :param skip_first: first page
-    :param num_pages: mumber of screen
+    :param num_pages: number of screenshots to take
+    :param force: if true, retake existing screenshot
     :return:
     """
     # check if output folder exists
@@ -32,7 +33,7 @@ def convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=50):
                 pyautogui.typewrite(['right'])
 
         out_file = os.path.join(out_dir, f"page_{page}.png")
-        if not os.path.exists(out_file):
+        if not os.path.exists(out_file) or force:
             pyautogui.screenshot(out_file, region=screen_size)
             pyautogui.typewrite(['right'])
 
@@ -44,4 +45,4 @@ if __name__ == "__main__":
     vertical_down = 1550
     screen_size = [horizontal_left, vertical_up, horizontal_right, vertical_down]
     out_dir = "images"
-    convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=66)
+    convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=66, force=False)
