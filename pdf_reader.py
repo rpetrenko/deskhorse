@@ -40,9 +40,9 @@ def convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=50, forc
 
 if __name__ == "__main__":
     horizontal_left = 160
-    vertical_up = 400
+    vertical_up = 370
     horizontal_right = 1150
-    vertical_down = 1550
+    vertical_down = 1540
     screen_size = [horizontal_left, vertical_up, horizontal_right, vertical_down]
     out_dir = "images"
     convert_pdf_to_images(screen_size, out_dir, skip_first=0, num_pages=66, force=False)
